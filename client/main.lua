@@ -43,6 +43,10 @@ local function NitroLoop(lastVehicle)
   local isBoosting = IsVehicleNitroBoostEnabled(vehicle)
   local isPurging = IsVehicleNitroPurgeEnabled(vehicle)
   local isFueled = GetNitroFuelLevel(vehicle) > 0
+  
+  if isBoosting or isPurging then
+    DrainNitroFuel(vehicle, isPurging)
+  end
 
   if isRunning and isEnabled and isFueled then
     if isDriving then
