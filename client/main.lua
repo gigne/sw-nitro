@@ -1,6 +1,7 @@
 local INPUT_CHARACTER_WHEEL = 19
 local INPUT_VEH_ACCELERATE = 71
 local INPUT_VEH_DUCK = 73
+local modTurbo = false
 
 local function IsNitroControlPressed()
   if not IsInputDisabled(2) then
@@ -25,6 +26,11 @@ local function NitroLoop(lastVehicle)
     SetVehicleLightTrailEnabled(lastVehicle, false)
     SetVehicleNitroPurgeEnabled(lastVehicle, false)
     TriggerServerEvent('nitro:__sync', false, false, true)
+    modTurbo = IsToggleModOn(vehicle, 18)
+  end
+
+  if not modTurbo then
+    return 0
   end
 
   if vehicle == 0 or driver ~= player then
