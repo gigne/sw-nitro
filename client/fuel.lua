@@ -44,6 +44,7 @@ end
 
 function GetNitroFuelLevel(vehicle)
   if vehicles[vehicle] then
+	SetVehicleTurboPressure(vehicle, vehicles[vehicle])
     return math.max(0, vehicles[vehicle])
   end
 
